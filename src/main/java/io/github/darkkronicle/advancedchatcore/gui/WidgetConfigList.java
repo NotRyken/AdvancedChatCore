@@ -13,6 +13,8 @@ import fi.dy.masa.malilib.gui.widgets.WidgetListBase;
 import fi.dy.masa.malilib.gui.wrappers.TextFieldWrapper;
 import java.util.ArrayList;
 import java.util.List;
+
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 
 public abstract class WidgetConfigList<TYPE, WIDGET extends WidgetConfigListEntry<TYPE>>
@@ -30,6 +32,14 @@ public abstract class WidgetConfigList<TYPE, WIDGET extends WidgetConfigListEntr
         super(x, y, width, height, selectionListener);
         this.browserEntryHeight = 22;
         this.setParent(parent);
+    }
+
+    @Override
+    public void resize(MinecraftClient mc, int width, int height) {
+        this.width = width;
+        this.height = height;
+        this.clearElements();
+        this.clearAndInit();
     }
 
     @Override

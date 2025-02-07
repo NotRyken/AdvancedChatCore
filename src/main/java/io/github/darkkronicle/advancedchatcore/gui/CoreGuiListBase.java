@@ -13,6 +13,7 @@ import fi.dy.masa.malilib.gui.interfaces.ISelectionListener;
 import fi.dy.masa.malilib.gui.widgets.WidgetListBase;
 import fi.dy.masa.malilib.gui.widgets.WidgetListEntryBase;
 import io.github.darkkronicle.advancedchatcore.interfaces.IClosable;
+import net.minecraft.client.MinecraftClient;
 
 public abstract class CoreGuiListBase<
                 TYPE,
@@ -23,6 +24,14 @@ public abstract class CoreGuiListBase<
 
     public CoreGuiListBase(int listX, int listY) {
         super(listX, listY);
+    }
+
+    @Override
+    public void resize(MinecraftClient mc, int width, int height) {
+        this.width = width;
+        this.height = height;
+        this.clearElements();
+        this.clearAndInit();
     }
 
     @Override
